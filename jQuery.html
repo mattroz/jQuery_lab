@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/myStyle.css">
+</head>
+
+<body>
+	
+	<header class="navbar navbar-fixed-top navbar-inverse">
+  	<div class="navbar-header">
+    	<label class="brand logo">JQuery</label>
+		</div>
+	</header>
+
+	<div class="jumbotron">
+		<div class="row">
+			<div class="form-inline">
+			<!-- Inputs -->
+				<div class="input-group input-group col-md-3">
+					<h3><span class="label label-info">Характеристики товара</span></h3>
+					<input id="name" type="text" class="form-control inpts" placeholder="Наименование">
+					<input id="article" type="text" class="form-control inpts" placeholder="Артикул">
+					<input id="cost" type="text" class="form-control inpts" placeholder="Стоимость">
+					<input id="number" type="text" class="form-control inpts" placeholder="Количество">
+					<button id="add" class="btn btn-success">Add to card</button>
+				</div>
+				<!-- End inputs -->		
+
+				<!-- table with items -->
+				<div class="col-md-8">
+					<table id="items" class="table table-hover">
+						<thead>
+							<tr>
+								<td>Наименование</td>
+								<td>Стоимость</td>
+								<td>Количество</td>
+								<td>Дата</td>
+								<td>Время</td>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			<!-- end of table with items -->
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/myScript.js"></script>
+</body>
+
+</html>
