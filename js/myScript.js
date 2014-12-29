@@ -7,11 +7,15 @@ var Item = function(name, article, cost, number, date, time) {
 	this.time = time;
 }
 
+var calculatedSum = 0;
+
+
 $(document).ready(function(){
 
 	//add item at the table
 	$("#add").click(function(){
 		var date = new Date();
+		var sumArray = new Array();
 		var fullDate = date.getDate() + 
 										'/' + (date.getMonth()+1) + //months start from 0 
 										'/' + date.getFullYear() ,
@@ -43,14 +47,23 @@ $(document).ready(function(){
 				).appendTo('tbody tr:last-child');
 	
 		updateRows(selection);
+		calculatedSum += items.number*items.cost;
+		sumArray.push(calculatedSum);
 	});
 
 
 
-		//need for dynamic content (dynamic rows)
-		$("#items").on("mouseover", 'tr', function() {
-   		$("[rel='tooltip']").tooltip({ placement: 'right' });
-		});
+	//need for dynamic content (dynamic rows)
+	$("#items").on("mouseover", 'tr', function() {
+ 		$("[rel='tooltip']").tooltip({ placement: 'right' });
+	});
+
+
+	//calculate all goods with price*number
+	$("#calculate").click(function(){
+		alert('Общая сумма = ' + calculatedSum + '$');
+	});
+
 
 });
 
@@ -61,7 +74,13 @@ var updateRows = function(selection) {
 			selection.parent('tr').remove();
 
 			//remove bootstrap tooltips after deleting some row
-			$('div[role=tooltip]').remove();
+			$('div[role=tooltip]').remove();  
 		}
 	});
 }
+
+
+$('#items').on("click",'td', function(){
+	$(this).html(prompt('Enter new value:'));
+
+});
