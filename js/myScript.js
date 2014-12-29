@@ -15,7 +15,7 @@ $(document).ready(function(){
 	//add item at the table
 	$("#add").click(function(){
 		var date = new Date();
-		var sumArray = new Array();
+		//var sumArray = new Array();
 		var fullDate = date.getDate() + 
 										'/' + (date.getMonth()+1) + //months start from 0 
 										'/' + date.getFullYear() ,
@@ -48,7 +48,7 @@ $(document).ready(function(){
 	
 		updateRows(selection);
 		calculatedSum += items.number*items.cost;
-		sumArray.push(calculatedSum);
+		//sumArray.push(calculatedSum);
 	});
 
 
@@ -79,8 +79,9 @@ var updateRows = function(selection) {
 	});
 }
 
-
+//accept deleting if this is not header td's 
 $('#items').on("click",'td', function(){
-	$(this).html(prompt('Enter new value:'));
-
+	if ( $(this).parent().is('tr[rel=tooltip]') ) {
+		$(this).html(prompt('Enter new value:'));
+	}
 });
