@@ -7,7 +7,6 @@ var Item = function(name, article, cost, number, date, time) {
 	this.time = time;
 }
 
-var calculatedSum = 0;
 
 
 $(document).ready(function(){
@@ -40,15 +39,14 @@ $(document).ready(function(){
 		$(html_tr).appendTo('#items');
 
 			var selection = $('<td>' + items.name + '</td>' +
-					'<td>' + items.cost + '</td>' +
-					'<td>' + items.number + '</td>' + 
+					'<td class="cost">' + items.cost + '</td>' +
+					'<td class="number">' + items.number + '</td>' + 
 					'<td>' + items.date + '</td>' + 
 					'<td>' + items.time + '</td>'
 				).appendTo('tbody tr:last-child');
 	
 		updateRows(selection);
-		calculatedSum += items.number*items.cost;
-		//sumArray.push(calculatedSum);
+		
 	});
 
 
@@ -59,13 +57,32 @@ $(document).ready(function(){
 	});
 
 
-	//calculate all goods with price*number
+	//calculate all goods with price*number DOESNT WORK NEED TO FIX
 	$("#calculate").click(function(){
+		var calculatedSum = 0;
+		
+		$('tbody td').each(function(){
+			var _number = 0, _cost = 0;
+			
+			if( $(this).hasClass('cost') ){
+				_cost = parseInt($(this).text(),10);
+				alert('cost = ' + _cost);
+			} 
+			else if( $(this).hasClass('number') ){
+				_number = parseInt($(this).text(),10);
+				alert('number = ' + _number);
+			}
+
+			calculatedSum += _number * _cost;
+			alert('calculatedSum = ' + calculatedSum);
+		});
 		alert('Общая сумма = ' + calculatedSum + '$');
 	});
 
-
 });
+
+
+//JS FUNCTIONS
 
 //delete rows on RMB-click and delete all tooltips on this page
 var updateRows = function(selection) {
@@ -85,3 +102,4 @@ $('#items').on("click",'td', function(){
 		$(this).html(prompt('Enter new value:'));
 	}
 });
+
